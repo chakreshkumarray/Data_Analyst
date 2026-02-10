@@ -1,1 +1,0 @@
-print("Today","is","Monady",sep="...")
