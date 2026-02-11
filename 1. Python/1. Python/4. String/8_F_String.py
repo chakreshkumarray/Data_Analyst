@@ -1,3 +1,4 @@
+# F String
 city = "Sultanpur"
 temp = 75
 weather = f"The tempreature in {city} is {temp} degree"
