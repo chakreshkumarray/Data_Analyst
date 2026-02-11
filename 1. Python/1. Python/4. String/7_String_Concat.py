@@ -1,3 +1,4 @@
+# String Concatentaion
 a = "1"
 b = "1"
 print(a+b)
@@ -12,7 +13,5 @@ print(message)
 
 city = "Lucknow"
 temp = 75
-weather = "The tempreature in "+city+ " is "+str(temp)+ " degree now."
-print(weather)
-
-
+weather_report = "The tempreature in "+city+ " is "+str(temp)+ " degree now."
+print(weather_report)
