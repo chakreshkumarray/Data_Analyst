@@ -1,6 +1,6 @@
 # Skip Sequence
 message = "Dont't worry about errors."
-message = 'Don\'t worry about erroes.'
+message = 'Don\'t worry about errors.'
 print(message)
 
 dialogue = 'She said ,"Python is amazing!"'
@@ -15,7 +15,8 @@ print(poem)
 story = "wuebfjfhuehtheihvbdkvaeiufef,asnbvkadhguoe,anvjdahgke,\navdnakgegnad,gkfgkajng,dhguaehgjadngkjehghafgn,j g\ndabskbgkbgndgjksgkjeg,dngkjaekgnhqriuteqgrngrhgogjgiuhgehgsngjhiugyegbiohfkanv ,udhedklgheioyteytqetpoie\nutqeqehehgndlbsodjdvdvbaofejgeglkh\ngoeigdlkv zx,nvhxkgfywegebgbgjeggegsdgn\nklhehiegebggoiyeegbkguie"
 print(story)
 
-directory = "C:\user\kumar\Downloads\photos"
+# "C:\user\kumar\Downloads\photos" error
+directory = "C:\\user\\kumar\\Downloads\\photos"
 print(directory)
 
 print("HEL\P")
