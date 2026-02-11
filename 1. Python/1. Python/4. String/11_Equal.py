@@ -1,3 +1,4 @@
+#Equal Check
 msg = "Help!"
 res = len(msg) >= 5
 print(res)
