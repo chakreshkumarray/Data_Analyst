@@ -40,5 +40,3 @@ print(sentence.count('i'))
 print(sentence.count('s'))
 print(sentence.count('p'))
 print(sentence.count('m'))
-
-# 6.
