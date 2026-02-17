@@ -1,3 +1,6 @@
+# Assignment Operator
+# LHS = RHS
+
 a = 1
 b = 2
 
@@ -8,7 +11,6 @@ d = 3
 
 c = (d == 3)
 
-'''
 # Swap Number Take input from user
 x = int(input("Enter value of x: "))
 y = int(input("Enter value of y: "))
@@ -20,10 +22,9 @@ y = temp
 # x,y = y,x
 
 print(x,y)
-'''
 
 z = 3
-z = z + 5
+z = z + 5 # +=
 print(z)
 
 salary = 11
