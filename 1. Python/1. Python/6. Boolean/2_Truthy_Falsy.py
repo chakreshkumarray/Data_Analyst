@@ -1,3 +1,5 @@
+# Truthy and Falsy 
+
 print(bool(1))
 print(bool(0))
 
