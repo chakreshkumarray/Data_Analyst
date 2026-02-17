@@ -1,3 +1,6 @@
+# Boolean
+# true / false
+
 a = True
 b = False
 print(type(a))
