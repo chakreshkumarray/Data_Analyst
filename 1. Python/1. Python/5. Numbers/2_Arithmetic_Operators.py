@@ -1,3 +1,5 @@
+# Arithmetic to preform some operand with operator
+
 a = 10
 b = 3
 print("Addition: ",a+b)
@@ -14,4 +16,9 @@ result = 2 + 3 * 4
 print(result)
 
 question = 10 - ((2 ** 3) // 2) + 7
+#            10 - (8 // 2) + 7
+#            10 - 4 + 7
+#            13
 print(question)
+
+# ( ) > ** > *, /, //, %, >, +, -
