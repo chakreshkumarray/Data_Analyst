@@ -1,3 +1,4 @@
+# Bitwise Operator
 x = 10 # 1010
 y = 6 # 0110
 
@@ -14,7 +15,7 @@ print(x ^ y)
 print(~x)
 
 # Left Shift
-print(x >> 1)
+print(x << 1)
 
 # Right Shift
 print(x >> 1)
@@ -22,5 +23,5 @@ print(x >> 1)
 # question
 print(10 // 3)   # Ans 3
 print(10.0 // 3) # Ans 3.0
-print(-10 // 3)  # Ans -4
+print(-10 // 3)  # Ans -4 returns largest integer less than or equal to the exact division result
 print(10 // -3)  # Ans -4
