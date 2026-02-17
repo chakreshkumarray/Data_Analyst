@@ -1,4 +1,5 @@
 # if else
+
 score = 52
 if score >= 33:
   print("Passed")
