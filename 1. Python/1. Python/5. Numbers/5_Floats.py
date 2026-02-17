@@ -1,3 +1,5 @@
+# Float Numbers
+
 salary = 1.56
 print(salary)
 z = -0.323
@@ -30,11 +32,11 @@ print(very_large)
 pi = 3.14141704036532326
 print(f"{pi:.2f}")
 
-a = 0.3
-b = 0.1 + 0.2
+a = 0.3 # 0.3
+b = 0.1 + 0.1 # 0.30000
 print(a)
 print(b)
-print(a == b)
+print(a == b) # Both are not equal a, b
 
 import math
 print(math.isclose(a,b))
