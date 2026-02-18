@@ -1,4 +1,4 @@
-# 21. Check whether a year is a century leap year (400 rule).
+# 21. Check whether a year is a century leap year.
 year  = int(input("Enter year: "))
 if year % 400 == 0:
   print("Leap Year")
@@ -33,7 +33,7 @@ elif d == 0:
 else:
   print("Complex Roots")
 
-# 24. Implement ATM withdrawal system (minimum balance ₹1000).
+# 24. Implement ATM withdrawal system .
 balance = int(input())
 withdraw = int(input())
 if withdraw <= balance - 1000:
@@ -43,7 +43,7 @@ if withdraw <= balance - 1000:
 else:
   print("Insufficient Balance")
 
-# 25. Create loan eligibility system (salary ≥ 25000, age ≥ 21, credit score ≥ 650).
+# 25. Create loan eligibility system.
 salary = int(input())
 age = int(input())
 credit = int(input())
@@ -65,7 +65,7 @@ elif bmi < 30:
 else:
   print("Obese")
 
-# 27. Create grading system with subject pass condition (pass ≥ 40 in all).
+# 27. Create grading system with subject pass condition.
 m1 = int(input())
 m2 = int(input())
 m3 = int(input())
@@ -104,7 +104,7 @@ elif choice == 2:
 elif choice == 3:
   print(balance)
 
-# 30. Validate date (basic DD/MM/YYYY format).
+# 30. Validate date .
 d = int(input())
 m = int(input()) 
 y = int(input())
@@ -117,7 +117,7 @@ else:
   print("Invalid Month")
 
 # 🔴 LOGIC + NESTED
-# 31. Positive Even / Negative Odd etc. 
+# 31. Positive Even , Negative Odd etc. 
 n = int(input())
 if n > 0 and n % 2 == 0:
   print("Positive Even")
@@ -167,7 +167,7 @@ elif (u == "rock" and c == "scissors") or \
 else:
   print("Computer Wins")
 
-# 36. Shopping Discount + Coupon 
+# 36. Shopping Discount , Coupon 
 amount = int(input())
 coupon = input()
 if amount >= 5000:
@@ -180,7 +180,7 @@ if coupon == "SAVE100":
   discount += 100
 print("Final:",amount - discount)
 
-# 37. 3 Login Attempts
+# 37. Login Attempts
 correct = "admin"
 for i in range(3):
   pwd = input()
