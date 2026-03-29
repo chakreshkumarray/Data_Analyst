@@ -1,2 +1,1184 @@
-1. MySQL Preparation
+------- MySQL Preparation -------------
 
+
+1. Data Analyst
+
+🔹 1. What is Data Analysis?
+
+Data Analysis is the process of:
+👉 Collecting, cleaning, and analyzing data
+👉 To find patterns, insights, and make decisions
+
+Example:
+A company checks sales data to see which product is selling more
+
+👉 Output: Insights, reports, dashboards.
+
+🔹 2. What is a Data Analyst?
+
+A Data Analyst is a person who:
+👉 Works with data to find insights
+👉 Uses tools like SQL, Excel, Python, Power BI
+
+Responsibilities:
+Clean data
+Analyze trends
+Create reports & dashboards
+Example:
+“Why did sales drop last month?” → Analyst finds the reason.
+
+🔹 3. What is Data Science?
+
+Data Science is more advanced than data analysis
+
+👉 It uses:
+
+Machine Learning
+Statistics
+Programming
+
+👉 To predict future outcomes
+
+Example:
+Predicting:
+Customer churn
+Stock prices
+
+👉 Output: Predictions, models.
+
+🔹 4. What is a Data Scientist?
+
+A Data Scientist:
+👉 Builds models and predictions
+👉 Uses:
+
+Python (ML libraries)
+Statistics
+AI
+Example:
+Netflix recommending movies
+Fraud detection system.
+
+🔹 5. What is a Data Engineer?
+
+A Data Engineer:
+👉 Builds systems to collect and store data
+
+Responsibilities:
+Create data pipelines
+Handle big data
+Work with databases
+Tools:
+SQL
+Hadoop
+Spark
+Cloud (AWS)
+Example:
+Making sure data is available for analysts.
+
+-- 1. MYSQL --
+--- 1. What is DataBase ---
+
+🔹 1. BASIC DATABASE QUESTIONS
+❓ What is a Database?
+A database is an organized collection of data that can be easily accessed and managed.
+
+❓ What is DBMS?
+DBMS (Database Management System) is software used to:
+Store data
+Retrieve data
+Manage data
+👉 Examples: MySQL, PostgreSQL, Oracle
+
+❓ What is RDBMS?
+Relational DBMS stores data in tables (rows & columns) and uses relationships.
+
+❓ Difference: DBMS vs RDBMS
+DBMS	RDBMS
+No relations	Has relationships
+Small systems	Large systems
+
+🔥 🔹 TYPES OF RELATIONSHIPS
+✅ 1. One-to-One (1:1)
+
+👉 One record in Table A = One record in Table B
+
+Example:
+One person → One passport
+Person	Passport
+1	P101
+
+✅ 2. One-to-Many (1:M) ⭐ MOST IMPORTANT
+
+👉 One record in Table A = Many records in Table B
+
+Example:
+One customer → Many orders
+-- customers table
+id (PK)
+
+-- orders table
+customer_id (FK)
+
+👉 Used in most real-world systems
+
+✅ 3. Many-to-Many (M:M)
+
+👉 Many records in Table A = Many in Table B
+
+Example:
+Students ↔ Courses
+
+👉 Solution:
+Use a junction table
+
+Tables:
+students
+courses
+student_courses (junction)
+
+
+CREATE TABLE student_courses (
+  student_id INT,
+  course_id INT
+);
+
+Why the Relationship Model.
+
+I. Data Integrity
+II. Reduced Redundency
+III. Flexibility in Querying
+
+--- 2. SQL Basic ---
+🔥 🔹 1. What is SQL?
+
+SQL (Structured Query Language) is used to:
+👉 Store, retrieve, and manage data in a database.
+
+🔥 🔹 Main Categories of SQL Commands
+
+SQL commands are divided into 5 main types 👇
+
+✅ 1. DDL (Data Definition Language)
+
+👉 Used to define or modify database structure
+
+Commands:
+CREATE → create table/database
+ALTER → modify table
+DROP → delete table
+TRUNCATE → remove all data
+
+Example:
+CREATE TABLE employees (
+  id INT,
+  name VARCHAR(50),
+  salary INT
+);
+
+✅ 2. DML (Data Manipulation Language)
+
+👉 Used to work with data inside tables
+
+Commands:
+INSERT → add data
+UPDATE → modify data
+DELETE → remove data
+Example:
+INSERT INTO employees VALUES (1, 'Ram', 50000);
+
+✅ 3. DQL (Data Query Language)
+
+👉 Used to fetch data
+
+Command:
+SELECT
+Example:
+SELECT * FROM employees;
+
+✅ 4. DCL (Data Control Language)
+
+👉 Used to control permissions
+
+Commands:
+GRANT → give access
+REVOKE → remove access
+Example:
+GRANT SELECT ON employees TO user1;
+
+✅ 5. TCL (Transaction Control Language)
+
+👉 Used to manage transactions
+
+Commands:
+COMMIT → save changes
+ROLLBACK → undo changes
+SAVEPOINT → temporary save
+Example:
+ROLLBACK;
+
+
+--- 3. Install MYSQL ---
+MySQL Workbench --> CLI / GUI
+
+--- 4. Basic Database Terminology ---
+
+🔥 🔹 What is Schema?
+
+A schema is the structure (design/blueprint) of a database.
+
+👉 It defines:
+
+Tables
+Columns
+Data types
+Relationships
+Constraints
+📌 Simple Example
+CREATE TABLE employees (
+  id INT PRIMARY KEY,
+  name VARCHAR(50),
+  salary INT
+);
+
+🔥 🔹 1. Database Schema
+
+👉 Definition:
+A database schema is the overall structure of the entire database.
+
+👉 It includes:
+
+All tables
+Relationships between tables
+Constraints
+Views, indexes
+Example:
+
+A company database may have:
+
+employees table
+departments table
+orders table
+
+👉 All of this together = Database Schema
+
+🔥 🔹 2. Table Schema
+
+👉 Definition:
+A table schema defines the structure of a single table.
+
+👉 It includes:
+
+Column names
+Data types
+Constraints
+Example:
+CREATE TABLE employees (
+  id INT PRIMARY KEY,
+  name VARCHAR(50),
+  salary INT
+);
+
+👉 This is the table schema of employees
+
+🔥 🔹 3. Subschema (View Schema)
+
+👉 Definition:
+A subschema is a subset of the database schema that a specific user sees.
+
+👉 It is used for:
+
+Security
+Simplicity
+Custom views
+Example:
+CREATE VIEW emp_view AS
+SELECT name, salary FROM employees;
+
+👉 User sees only:
+
+name
+salary
+
+👉 Not full table → this is subschema
+
+🔥 🔹 What is an Index?
+
+An Index is a data structure that:
+👉 Speeds up data retrieval (SELECT queries)
+
+👉 Works like:
+📖 Index in a book → helps you find pages quickly
+
+📌 Example
+
+Without index:
+
+Database scans all rows (slow)
+
+With index:
+
+Directly finds data (fast)
+🔥 🔹 Syntax
+Create Index
+CREATE INDEX idx_name
+ON employees(name);
+
+🔥 🔹 What is a Query?
+
+A query is a request to the database to get or manipulate data.
+
+👉 In simple words:
+Query = asking the database for information
+
+📌 Example
+SELECT * FROM employees;
+
+🔥 🔹 What is a Result Set?
+
+A Result Set is:
+👉 The output (data returned) after executing a SQL query
+
+📌 Example
+SELECT name, salary FROM employees;
+Suppose table:
+name	salary
+Ram	50000
+Shyam	60000
+
+🔥 🔹 Simple Meaning
+
+👉 Query = Question
+👉 Result Set = Answer
+
+--- 5. Data Types ---
+
+🔥 🔹 What are Data Types?
+
+Data Types define:
+👉 What kind of data a column can store
+
+👉 Example:
+
+Number
+Text
+Date
+🔥 🔹 Why Data Types are Important?
+Ensure correct data storage
+Improve performance
+Prevent errors
+
+🔥 🔹 Main Categories of Data Types
+
+✅ 1. Numeric Data Types
+
+👉 Used for numbers
+
+Data Type	Description
+INT	Whole numbers
+FLOAT	Decimal numbers
+DOUBLE	Large decimal values
+DECIMAL	Exact precision values
+Example:
+salary INT;
+price DECIMAL(10,2);
+
+✅ 2. String (Text) Data Types
+
+👉 Used for text
+
+Data Type	Description
+CHAR(n)	Fixed length
+VARCHAR(n)	Variable length
+TEXT	Large text
+Example:
+name VARCHAR(50);
+description TEXT;
+
+✅ 3. Date & Time Data Types
+
+👉 Used for date/time
+
+Data Type	Description
+DATE	YYYY-MM-DD
+TIME	HH:MM:SS
+DATETIME	Date + time
+TIMESTAMP	Auto time tracking
+Example:
+created_at DATETIME;
+
+✅ 4. Boolean Data Type
+
+👉 Stores TRUE or FALSE
+
+is_active BOOLEAN;
+🔥 🔹 Example Table
+CREATE TABLE employees (
+  id INT,
+  name VARCHAR(50),
+  salary DECIMAL(10,2),
+  joining_date DATE
+);
+
+🔥 🔹 CHAR vs VARCHAR (Important)
+
+CHAR	VARCHAR
+Fixed size	Variable size
+Faster	Flexible
+Wastes space Saves space
+
+--- 6. DB Commands ---
+
+✅ 1. DDL (Data Definition Language)
+
+👉 Used to create and modify structure
+
+Commands:
+CREATE → create database/table
+ALTER → modify table
+DROP → delete table/database
+TRUNCATE → delete all data
+Example:
+CREATE DATABASE company;
+CREATE TABLE employees (
+  id INT,
+  name VARCHAR(50)
+);
+
+✅ 2. DML (Data Manipulation Language)
+
+👉 Used to work with data
+
+Commands:
+INSERT
+UPDATE
+DELETE
+Example:
+INSERT INTO employees VALUES (1, 'Ram');
+
+✅ 3. DQL (Data Query Language)
+
+👉 Used to fetch data
+
+Command:
+SELECT
+SELECT * FROM employees;
+
+✅ 4. DCL (Data Control Language)
+
+👉 Used to control access
+
+Commands:
+GRANT
+REVOKE
+
+✅ 5. TCL (Transaction Control Language)
+
+👉 Used to manage transactions
+
+Commands:
+COMMIT
+ROLLBACK
+SAVEPOINT
+
+This is a very common interview question 👍
+Let’s clearly understand DELETE vs TRUNCATE vs DROP 👇
+
+🔥 🔹 1. DELETE
+
+👉 Removes specific rows from a table
+
+Features:
+Can use WHERE condition
+Deletes row by row
+Can rollback (if transaction enabled)
+Table structure remains
+Example:
+DELETE FROM employees
+WHERE id = 1;
+🔥 🔹 2. TRUNCATE
+
+👉 Removes all rows from a table
+
+Features:
+No WHERE condition
+Deletes all data quickly
+Cannot rollback (generally)
+Resets auto-increment
+Table structure remains
+Example:
+TRUNCATE TABLE employees;
+🔥 🔹 3. DROP
+
+👉 Deletes entire table
+
+Features:
+Removes data + structure
+Table is completely deleted
+Cannot rollback
+Need to recreate table
+Example:
+DROP TABLE employees;
+
+--- 7. Table Commands ---
+
+🔥 🔹 What are Table Commands?
+
+👉 Table commands are used to:
+
+Create tables
+Modify tables
+Delete tables
+Manage table data
+
+🔥 🔹 1. CREATE TABLE
+
+👉 Used to create a new table
+
+CREATE TABLE employees (
+  id INT PRIMARY KEY,
+  name VARCHAR(50),
+  salary INT
+);
+
+🔥 🔹 2. ALTER TABLE
+
+👉 Used to modify table structure
+
+Add column
+ALTER TABLE employees
+ADD age INT;
+Modify column
+ALTER TABLE employees
+MODIFY salary DECIMAL(10,2);
+Drop column
+ALTER TABLE employees
+DROP COLUMN age;
+
+🔥 🔹 3. DROP TABLE
+
+👉 Deletes entire table (structure + data)
+
+DROP TABLE employees;
+
+🔥 🔹 4. TRUNCATE TABLE
+
+👉 Removes all data but keeps structure
+
+TRUNCATE TABLE employees;
+
+🔥 🔹 5. RENAME TABLE
+
+👉 Rename table
+
+RENAME TABLE employees TO staff;
+
+🔥 🔹 6. DESCRIBE TABLE
+
+👉 Shows table structure
+
+DESC employees;
+
+🔥 🔹 7. INSERT INTO TABLE
+
+👉 Add data into table
+
+INSERT INTO employees VALUES (1, 'Ram', 50000);
+
+🔥 🔹 8. DELETE FROM TABLE
+
+👉 Delete specific data
+
+DELETE FROM employees
+WHERE id = 1;
+
+🔥 🔹 9. SELECT FROM TABLE
+
+👉 Retrieve data
+
+SELECT * FROM employees;
+
+--- 8. Select Statement ---
+🔥 🔹 What is SELECT?
+
+👉 The SELECT statement is used to:
+Retrieve (fetch) data from a database table
+
+📌 Basic Syntax
+SELECT column_name
+FROM table_name;
+
+✅ 1. Select all data
+SELECT * FROM employees;
+
+👉 * means all columns
+
+✅ 2. Select specific columns
+SELECT name, salary FROM employees;
+
+🔥 🔹 3. WHERE (Filter Data)
+SELECT * FROM employees
+WHERE salary > 50000;
+
+🔥 🔹 4. ORDER BY (Sorting)
+SELECT * FROM employees
+ORDER BY salary DESC;
+
+👉 DESC → highest first
+👉 ASC → lowest first
+
+🔥 🔹 5. DISTINCT (Unique Values)
+SELECT DISTINCT dept FROM employees;
+
+🔥 🔹 6. LIMIT (Top Records)
+SELECT * FROM employees
+LIMIT 5;
+
+🔥 🔹 7. AND / OR
+SELECT * FROM employees
+WHERE dept = 'IT' AND salary > 60000;
+
+🔥 🔹 8. LIKE (Pattern Search)
+SELECT * FROM employees
+WHERE name LIKE 'A%';
+
+🔥 🔹 9. AGGREGATE FUNCTIONS
+SELECT AVG(salary) FROM employees;
+
+🔥 🔹 10. GROUP BY
+SELECT dept, COUNT(*)
+FROM employees
+GROUP BY dept;
+
+🔥 🔹 11. HAVING
+SELECT dept, COUNT(*)
+FROM employees
+GROUP BY dept
+HAVING COUNT(*) > 5;
+
+--- 9. Where Clause ---
+
+🔥 🔹 What is WHERE Clause?
+
+👉 The WHERE clause is used to:
+Filter records based on a condition
+
+👉 It tells the database:
+“Give me only the data that matches this condition”
+
+📌 Basic Syntax
+SELECT column_name
+FROM table_name
+WHERE condition;
+🔥 🔹 Examples
+
+✅ 1. Simple condition
+SELECT * FROM employees
+WHERE salary > 50000;
+
+👉 Returns employees with salary > 50,000
+
+✅ 2. Using AND
+SELECT * FROM employees
+WHERE dept = 'IT' AND salary > 60000;
+
+✅ 3. Using OR
+SELECT * FROM employees
+WHERE dept = 'IT' OR dept = 'HR';
+
+✅ 4. Using BETWEEN
+SELECT * FROM employees
+WHERE salary BETWEEN 40000 AND 80000;
+
+✅ 5. Using IN
+SELECT * FROM employees
+WHERE dept IN ('IT', 'HR');
+
+✅ 6. Using LIKE (Pattern Search)
+SELECT * FROM employees
+WHERE name LIKE 'A%';
+
+👉 Names starting with A
+
+✅ 7. Using NULL
+SELECT * FROM employees
+WHERE salary IS NULL;
+
+🔥 🔹 Operators Used in WHERE
+Type	Operators
+Comparison	=, >, <, >=, <=
+Logical	AND, OR, NOT
+
+--- 10. Logical Operator ---
+
+🔥 🔹 What are Logical Operators?
+
+👉 Logical operators are used in the WHERE clause to:
+Combine multiple conditions
+
+🔥 🔹 Types of Logical Operators
+✅ 1. AND
+
+👉 Returns TRUE if both conditions are true
+
+Example:
+SELECT * FROM employees
+WHERE dept = 'IT' AND salary > 60000;
+
+👉 Only employees who:
+
+Are in IT
+AND have salary > 60,000
+✅ 2. OR
+
+👉 Returns TRUE if any one condition is true
+
+Example:
+SELECT * FROM employees
+WHERE dept = 'IT' OR dept = 'HR';
+
+👉 Employees in IT or HR
+
+✅ 3. NOT
+
+👉 Reverses the condition
+
+Example:
+SELECT * FROM employees
+WHERE NOT dept = 'IT';
+
+👉 Employees who are not in IT
+
+🔥 🔹 Combined Example
+SELECT * FROM employees
+WHERE dept = 'IT' AND (salary > 50000 OR age < 30);
+
+👉 Complex filtering using multiple operators
+
+--- 11. Comparison Operator ---
+
+🔥 🔹 What are Comparison Operators?
+
+👉 Comparison operators are used in the WHERE clause to:
+Compare values and filter rows
+
+🔥 🔹 Types of Comparison Operators
+Operator	Meaning
+=	Equal to
+!= or <>	Not equal to
+>	Greater than
+<	Less than
+>=	Greater than or equal
+<=	Less than or equal
+🔥 🔹 Examples
+
+✅ 1. Equal to (=)
+SELECT * FROM employees
+WHERE dept = 'IT';
+
+✅ 2. Not Equal (!=)
+SELECT * FROM employees
+WHERE dept != 'HR';
+
+✅ 3. Greater Than (>)
+SELECT * FROM employees
+WHERE salary > 50000;
+
+✅ 4. Less Than (<)
+SELECT * FROM employees
+WHERE salary < 30000;
+
+✅ 5. Greater Than or Equal (>=)
+SELECT * FROM employees
+WHERE salary >= 60000;
+
+✅ 6. Less Than or Equal (<=)
+SELECT * FROM employees
+WHERE salary <= 40000;
+
+--- 12. Order by Clause ---
+
+🔥 🔹 What is ORDER BY?
+
+👉 The ORDER BY clause is used to:
+Sort the result set (output) in ascending or descending order.
+ORDER BY sorts ROWS (records).
+
+📌 Basic Syntax
+SELECT column_name
+FROM table_name
+ORDER BY column_name [ASC | DESC];
+🔥 🔹 Sorting Types
+
+✅ 1. ASC (Ascending) – Default
+
+👉 Small → Large (A → Z, 1 → 9)
+
+SELECT * FROM employees
+ORDER BY salary ASC;
+
+✅ 2. DESC (Descending)
+
+👉 Large → Small (Z → A, 9 → 1)
+
+SELECT * FROM employees
+ORDER BY salary DESC;
+🔥 🔹 Examples
+
+✅ 1. Sort by one column
+SELECT * FROM employees
+ORDER BY name;
+
+✅ 2. Sort by multiple columns
+SELECT * FROM employees
+ORDER BY dept ASC, salary DESC;
+
+👉 First sorts by dept
+👉 Then salary within each dept
+
+✅ 3. With WHERE clause
+SELECT * FROM employees
+WHERE salary > 50000
+ORDER BY salary DESC;
+
+🔥 🔹 Execution Order (Important)
+
+SQL runs like this:
+
+FROM
+WHERE
+GROUP BY
+HAVING
+SELECT
+ORDER BY
+LIMIT
+
+Define row and column
+https://chatgpt.com/s/m_69c74346ee38819189233354c5f4b073
+
+
+--- 13. Limit and Offset, Pagination ---
+
+🔥 🔹 What is LIMIT?
+
+👉 LIMIT is used to:
+Restrict the number of rows returned
+
+📌 Syntax:
+SELECT * FROM table_name
+LIMIT number;
+
+✅ Example:
+SELECT * FROM employees
+LIMIT 5;
+
+👉 Returns first 5 rows
+
+🔥 🔹 What is OFFSET?
+
+👉 OFFSET is used to:
+Skip a number of rows before starting to return data
+
+📌 Syntax:
+SELECT * FROM table_name
+LIMIT number OFFSET skip_rows;
+
+✅ Example:
+SELECT * FROM employees
+LIMIT 5 OFFSET 2;
+
+🔥 🔹 What is Pagination?
+
+👉 Pagination means:
+Dividing large data into smaller pages
+
+👉 Instead of showing all data at once:
+
+Show 10 records per page
+
+--- 14. MySQL Alias(as)
+
+🔥 🔹 What is Alias?
+
+👉 Alias means:
+Giving a temporary name to a column or table
+
+👉 Used to:
+
+Make query short
+Improve readability
+
+🔥 🔹 Types of Alias
+
+✅ 1. Column Alias
+
+👉 Rename a column in output
+
+Example:
+SELECT name AS employee_name
+FROM employees;
+
+👉 Output column name becomes employee_name
+
+✅ 2. Table Alias
+
+👉 Rename table for shorter queries
+
+Example:
+SELECT e.name
+FROM employees e;
+
+👉 e is alias for employees
+
+🔥 🔹 Alias Without AS
+
+👉 AS is optional
+
+SELECT name employee_name
+FROM employees;
+
+🔥 🔹 Example with Calculation
+SELECT salary * 12 AS annual_salary
+FROM employees;
+
+🔥 🔹 Example with JOIN (Very Important)
+SELECT e.name, d.dept_name
+FROM employees e
+JOIN departments d
+ON e.dept_id = d.id;
+
+--- 15. Distinct ---
+
+🔥 🔹 What is DISTINCT?
+
+👉 DISTINCT is used to:
+Remove duplicate values from the result
+
+👉 It returns only unique values
+
+📌 Basic Syntax
+SELECT DISTINCT column_name
+FROM table_name;
+
+🔥 🔹 Example
+Table: employees
+name	dept
+Ram	IT
+Shyam	HR
+Amit	IT
+Neha	HR
+Query:
+SELECT DISTINCT dept
+FROM employees;
+Result:
+dept
+IT
+HR
+
+👉 Duplicate values removed
+
+🔥 🔹 Multiple Columns
+SELECT DISTINCT name, dept
+FROM employees;
+
+👉 Removes duplicate combinations
+
+🔥 🔹 DISTINCT with COUNT
+SELECT COUNT(DISTINCT dept)
+FROM employees;
+
+--- 16. Function ---
+
+🔥 🔹 What are SQL Functions?
+
+👉 SQL functions are built-in operations that:
+Perform calculations or manipulate data
+
+🔥 🔹 Types of SQL Functions
+✅ 1. Aggregate Functions
+
+👉 Work on multiple rows and return one value
+
+Functions:
+COUNT()
+SUM()
+AVG()
+MAX()
+MIN()
+Example:
+SELECT AVG(salary) FROM employees;
+SELECT COUNT(*) FROM employees;
+
+🔥 🔹 2. What are String Functions?
+
+👉 String functions are used to:
+Work with text (characters) in database
+
+🔥 🔹 Common String Functions
+✅ 1. UPPER() / LOWER()
+
+👉 Change text case
+
+SELECT UPPER(name) FROM employees;
+SELECT LOWER(name) FROM employees;
+✅ 2. LENGTH()
+
+👉 Returns number of characters
+
+SELECT LENGTH(name) FROM employees;
+✅ 3. CONCAT()
+
+👉 Combine strings
+
+SELECT CONCAT(first_name, ' ', last_name) AS full_name
+FROM employees;
+✅ 4. SUBSTRING() / SUBSTR()
+
+👉 Extract part of string
+
+SELECT SUBSTRING(name, 1, 3) FROM employees;
+
+👉 First 3 characters
+
+✅ 5. TRIM()
+
+👉 Remove spaces
+
+SELECT TRIM(name) FROM employees;
+✅ 6. REPLACE()
+
+👉 Replace text
+
+SELECT REPLACE(name, 'Ram', 'Ravi') FROM employees;
+✅ 7. INSTR()
+
+👉 Find position of substring
+
+SELECT INSTR(name, 'a') FROM employees;
+✅ 8. LEFT() / RIGHT()
+
+👉 Get characters from left or right
+
+SELECT LEFT(name, 2) FROM employees;
+SELECT RIGHT(name, 2) FROM employees;
+
+3. Math Function
+🔥 🔹 What are Math Functions?
+
+👉 Math functions are used to:
+Perform numerical calculations on data
+
+🔥 🔹 Common Math Functions
+✅ 1. ABS() (Absolute Value)
+
+👉 Converts negative to positive
+
+SELECT ABS(-10);
+
+👉 Output: 10
+
+✅ 2. ROUND()
+
+👉 Rounds a number
+
+SELECT ROUND(123.456, 2);
+
+👉 Output: 123.46
+
+✅ 3. CEIL() / CEILING()
+
+👉 Rounds up
+
+SELECT CEIL(4.2);
+
+👉 Output: 5
+
+✅ 4. FLOOR()
+
+👉 Rounds down
+
+SELECT FLOOR(4.9);
+
+👉 Output: 4
+
+✅ 5. MOD() (Remainder)
+SELECT MOD(10, 3);
+
+👉 Output: 1
+
+✅ 6. POWER()
+
+👉 Raises number to power
+
+SELECT POWER(2, 3);
+
+👉 Output: 8
+
+✅ 7. SQRT()
+
+👉 Square root
+
+SELECT SQRT(16);
+
+👉 Output: 4
+
+✅ 8. RAND()
+
+👉 Generates random number
+
+SELECT RAND();
+
+4. Date Function
+🔥 🔹 What are Date Functions?
+
+👉 Date functions are used to:
+Work with date and time values
+
+🔥 🔹 Common Date Functions
+✅ 1. NOW()
+
+👉 Returns current date and time
+
+SELECT NOW();
+✅ 2. CURDATE()
+
+👉 Returns current date only
+
+SELECT CURDATE();
+✅ 3. CURTIME()
+
+👉 Returns current time only
+
+SELECT CURTIME();
+✅ 4. DATE()
+
+👉 Extracts date from datetime
+
+SELECT DATE(NOW());
+✅ 5. YEAR(), MONTH(), DAY()
+
+👉 Extract parts of date
+
+SELECT YEAR('2025-03-28');
+SELECT MONTH('2025-03-28');
+SELECT DAY('2025-03-28');
+✅ 6. DATEDIFF()
+
+👉 Difference between two dates
+
+SELECT DATEDIFF('2025-04-01', '2025-03-28');
+
+👉 Output: 4
+
+✅ 7. DATE_ADD()
+
+👉 Add days/months/years
+
+SELECT DATE_ADD('2025-03-28', INTERVAL 5 DAY);
+✅ 8. DATE_SUB()
+
+👉 Subtract date
+
+SELECT DATE_SUB('2025-03-28', INTERVAL 5 DAY);
+
+--- 17. Group By Having ---
